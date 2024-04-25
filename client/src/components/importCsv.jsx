@@ -69,7 +69,7 @@ export default function ImportCsv() {
 	const alteraCampanha = (index, event) => {
 		const novaCampanha = event.target.value;
 		const dadosAtualizados = [...dados];
-		dadosAtualizados[index].campanha = novaCampanha;
+		dadosAtualizados[index].Campanha = novaCampanha;
 		setDados(dadosAtualizados);
 	};
 
