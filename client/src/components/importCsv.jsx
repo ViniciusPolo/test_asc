@@ -69,19 +69,29 @@ export default function ImportCsv() {
 	const alteraCampanha = (index, event) => {
 		const novaCampanha = event.target.value;
 		const dadosAtualizados = [...dados];
-		dadosAtualizados[index].Campanha = novaCampanha;
+		dadosAtualizados[index].campanha = novaCampanha;
 		setDados(dadosAtualizados);
 	};
 
 	const salvar = async () => {
     setIsLoading(true);
 		const dadosComNumeros = dados.map((item, index) => {
+			if (!item.Campanha && !item.campanha) {
+				alert(`Preencha uma campanha para ${item.Nome || item.nome} ${item.Sobrenome || item.sobrenome}`)
+				return null
+			}
 			// Substituir telefones pelos números correspondentes
 			return {
 				...item,
 				Telefone: parseInt(telefone[index]),
 			};
 		});
+
+		if (dadosComNumeros.some(item => item === null)) {
+      setIsLoading(false);
+      return; // Interrompe a execução da função
+    }
+
 		setDados(dadosComNumeros);
 		try {
 			await api
@@ -158,7 +168,6 @@ export default function ImportCsv() {
 										<input
 											type="text"
 											className="form-control"
-											required={true}
                       placeholder={row.campanha || "Informe a campanha"}
 											onBlur={(event) => alteraCampanha(index, event)}
 										/>

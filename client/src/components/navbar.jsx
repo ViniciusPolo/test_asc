@@ -19,7 +19,7 @@ export default function Navbar(props) {
             <ul className="list-group list-group-flush">
               <li className="list-group-item">
                   <Link className="nav-link active" to="/">
-                    Login
+                    Home
                   </Link>
                 </li>
                 <li className="list-group-item">
@@ -43,8 +43,7 @@ export default function Navbar(props) {
           aria-controls="navbarSupportedContent"
           aria-expanded="false"
           aria-label="Toggle navigation"
-          onClick={() => setResponsiveMenu(true)}
-          onMouseLeave={() => setResponsiveMenu(false)}
+          onClick={() => {!responsiveMenu ? setResponsiveMenu(true) : setResponsiveMenu(false)}}
         >
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -63,25 +62,6 @@ export default function Navbar(props) {
               </li>
             </ul>
           </div>
-        </div>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <form class="form-inline my-2 my-lg-0">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              {localStorage.getItem("valid_token") == "true" && (
-                <li
-                  class="nav-item"
-                  onClick={() =>
-                    localStorage.setItem("valid_token", false) &&
-                    localStorage.setItem("x-access-token", "")
-                  }
-                >
-                  <Link class="nav-link active" to="/login">
-                    Logout
-                  </Link>
-                </li>
-              )}
-            </ul>
-          </form>
         </div>
       </nav>
     </>

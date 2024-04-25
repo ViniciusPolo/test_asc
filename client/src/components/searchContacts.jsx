@@ -93,9 +93,8 @@ export default function SearchContacts() {
 					<form onSubmit={buscar}>
 						<div className="container">
 							<div className="row">
-								<div className="form-group col-6 mb-3">
+								<div className="form-group col-12 col-md-6 mb-3">
 									<label htmlFor="nome">Nome</label>
-									<br />
 									<input
 										type="text"
 										className="form-control"
@@ -105,9 +104,8 @@ export default function SearchContacts() {
 										onChange={handleChange}
 									/>
 								</div>
-								<div className="form-group col-6 mb-3">
+								<div className="form-group col-12 col-md-6 mb-3">
 									<label htmlFor="sobrenome">SobreNome</label>
-									<br />
 									<input
 										type="text"
 										className="form-control"
@@ -117,11 +115,8 @@ export default function SearchContacts() {
 										onChange={handleChange}
 									/>
 								</div>
-							</div>
-							<div className="row">
-								<div className="form-group col-6 mb-3">
+								<div className="form-group col-12 col-md-6 mb-3">
 									<label htmlFor="cidade">Cidade</label>
-									<br />
 									<input
 										type="text"
 										className="form-control"
@@ -131,9 +126,8 @@ export default function SearchContacts() {
 										onChange={handleChange}
 									/>
 								</div>
-								<div className="form-group col-6 mb-3">
+								<div className="form-group col-12 col-md-6 mb-3">
 									<label htmlFor="campanha">Campnaha</label>
-									<br />
 									<input
 										type="text"
 										className="form-control"
@@ -143,11 +137,9 @@ export default function SearchContacts() {
 										onChange={handleChange}
 									/>
 								</div>
-							</div>
-							<div className="row">
 								<button
 									type="button"
-									class="btn btn-primary m-3 mt-1"
+									class="btn btn-primary m-3 mt-1 col-12"
 									onClick={buscar}
 								>
 									Buscar Contatos
@@ -155,48 +147,50 @@ export default function SearchContacts() {
 							</div>
 						</div>
 					</form>
-					<table className="table table-striped">
-						<thead>
-							<tr>
-								<th scope="col">Nome</th>
-								<th scope="col">Sobrenome</th>
-								<th scope="col">Email</th>
-								<th scope="col">Telefone</th>
-								<th scope="col">Endereço</th>
-								<th scope="col">Cidade</th>
-								<th scope="col">CEP</th>
-								<th scope="col">Data de Nascimento</th>
-								<th scope="col">Campanha</th>
-							</tr>
-						</thead>
-						<tbody>
-							{dados.map((row, index) => (
-								<tr key={index}>
-									<td scope="row">{row.nome}</td>
-									<td>{row.sobrenome}</td>
-									<td>{row.email}</td>
-									<td>{formatarTelefone(row.telefone)}</td>
-									<td>{row.endereco}</td>
-									<td>{row.cidade}</td>
-									<td>{row.cep}</td>
-									<td>{row.data_nascimento}</td>
-									<td>{row.campanha}</td>
+					<div className="table-responsive">
+						<table className="table table-striped">
+							<thead>
+								<tr>
+									<th scope="col">Nome</th>
+									<th scope="col">Sobrenome</th>
+									<th scope="col">Email</th>
+									<th scope="col">Telefone</th>
+									<th scope="col">Endereço</th>
+									<th scope="col">Cidade</th>
+									<th scope="col">CEP</th>
+									<th scope="col">Data de Nascimento</th>
+									<th scope="col">Campanha</th>
 								</tr>
-							))}
-						</tbody>
-					</table>
+							</thead>
+							<tbody>
+								{dados.map((row, index) => (
+									<tr key={index}>
+										<td scope="row">{row.nome}</td>
+										<td>{row.sobrenome}</td>
+										<td>{row.email}</td>
+										<td>{formatarTelefone(row.telefone)}</td>
+										<td>{row.endereco}</td>
+										<td>{row.cidade}</td>
+										<td>{row.cep}</td>
+										<td>{row.data_nascimento}</td>
+										<td>{row.campanha}</td>
+									</tr>
+								))}
+							</tbody>
+						</table>
+					</div>
+					{ dados.length && (
           <div className="container">
-          <CSVLink data={dados}>
-            <div className="row">
-                <button
-                      type="button"
-                      class="btn btn-primary m-3 mt-1"
-                >
-                Exportar CSV
-                </button>
-            </div>
-          </CSVLink>
+						<CSVLink data={dados} className="row">
+							<button
+										type="button"
+										class="btn btn-primary m-3 mt-1"
+							>
+							Exportar CSV
+							</button>
+						</CSVLink>
           </div>
+					)}
 				</>
 			)}
 		</>
